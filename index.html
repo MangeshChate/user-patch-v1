@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔧 Manager-Approved Reference UI | Brutalist Debug Design</title>
+    <style>
+        /* ============================================ */
+        /* RESET & BASE                                  */
+        /* ============================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #1a1a1a;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+
+        /* ============================================ */
+        /* HEADER & NAV                                  */
+        /* ============================================ */
+        header {
+            background: #0d0d0d;
+            padding: 20px 40px;
+            border-bottom: 3px solid #00ff00;
+        }
+
+        nav h1 {
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-size: 1.8rem;
+            text-shadow: 3px 3px 0 #ff00ff;
+        }
+
+        /* ============================================ */
+        /* HERO SECTION (Reference)                      */
+        /* ============================================ */
+        .hero {
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            padding: 80px 40px;
+            text-align: center;
+            border-bottom: 6px solid #00ff00;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(0, 255, 0, 0.03) 10px,
+                rgba(0, 255, 0, 0.03) 20px
+            );
+            pointer-events: none;
+        }
+
+        .hero h2 {
+            font-size: 3.5rem;
+            font-family: 'Courier New', monospace;
+            color: #ffffff;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            margin-bottom: 20px;
+            text-shadow: 4px 4px 0 #00ff00;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #cccccc;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button {
+            background: #00ff00;
+            color: #000000;
+            border: none;
+            padding: 15px 40px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            cursor: pointer;
+            border: 3px solid #000000;
+            box-shadow: 6px 6px 0 #ff00ff;
+            transition: all 0.1s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0 #ff00ff;
+            background: #33ff33;
+        }
+
+        .cta-button:active {
+            transform: translate(2px, 2px);
+            box-shadow: 3px 3px 0 #ff00ff;
+        }
+
+        /* ============================================ */
+        /* YOUTUBE EMBED (Reference - Below Hero)        */
+        /* ============================================ */
+        .youtube-section {
+            background: #0a0a0a;
+            padding: 40px 20px;
+            text-align: center;
+            border-bottom: 4px solid #ff0000;
+            border-top: 4px solid #ff0000;
+        }
+
+        .youtube-section h3 {
+            color: #ff0000;
+            font-family: 'Courier New', monospace;
+            font-size: 2rem;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            animation: glitch 2s infinite;
+        }
+
+        .youtube-container {
+            display: flex;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .youtube-container iframe {
+            border: 6px solid #333333;
+            box-shadow: 12px 12px 0 #00ff00;
+            max-width: 100%;
+        }
+
+        .youtube-caption {
+            color: #666666;
+            font-family: 'Courier New', monospace;
+            margin-top: 15px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+        }
+
+        /* ============================================ */
+        /* MAIN CONTENT (Sample Debug Cards)             */
+        /* ============================================ */
+        .content {
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .content h3 {
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            border-left: 8px solid #ff00ff;
+            padding-left: 20px;
+        }
+
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .card {
+            background: #1e1e1e;
+            padding: 30px;
+            border: 3px solid #333333;
+            transition: all 0.2s ease;
+        }
+
+        .card:hover {
+            border-color: #00ff00;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 0 #00ff00;
+        }
+
+        .card h4 {
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .card p {
+            color: #bbbbbb;
+        }
+
+        /* ============================================ */
+        /* FOOTER (Reference)                            */
+        /* ============================================ */
+        footer {
+            background: #0d0d0d;
+            padding: 50px 40px;
+            text-align: center;
+            border-top: 4px solid #333333;
+        }
+
+        footer p {
+            color: #888888;
+            font-family: 'Courier New', monospace;
+            margin-bottom: 10px;
+        }
+
+        /* ============================================ */
+        /* BRUTALIST ADVERTISEMENT (Reference - Below Footer) */
+        /* ============================================ */
+        .brutalist-ad {
+            background: #000000;
+            border: 8px solid #00ff00;
+            padding: 40px 30px;
+            margin: 0;
+            font-family: 'Courier New', 'Lucida Sans Typewriter', monospace;
+            text-transform: uppercase;
+            box-shadow: inset 0 0 50px rgba(0, 255, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .brutalist-ad::before {
+            content: "!!! ADVERTISEMENT !!!";
+            position: absolute;
+            top: -12px;
+            left: 30px;
+            background: #00ff00;
+            color: #000000;
+            padding: 6px 20px;
+            font-weight: 900;
+            font-size: 14px;
+            border: 3px solid #000000;
+            letter-spacing: 2px;
+            z-index: 2;
+        }
+
+        .brutalist-ad::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(
+                0deg,
+                rgba(0, 255, 0, 0.05) 0px,
+                rgba(0, 0, 0, 0.8) 2px,
+                transparent 3px
+            );
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .brutalist-ad-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 25px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .brutalist-ad h2 {
+            color: #00ff00;
+            font-size: 2.5rem;
+            font-weight: 900;
+            letter-spacing: 4px;
+            text-align: center;
+            animation: brutalist-blink 0.8s step-end infinite;
+            text-shadow: 6px 6px 0 #ff00ff;
+            margin: 0;
+            line-height: 1.3;
+        }
+
+        .brutalist-ad img {
+            border: 5px solid #00ff00;
+            filter: contrast(180%) brightness(130%);
+            image-rendering: crisp-edges;
+            box-shadow: 15px 15px 0 #ff00ff;
+            transition: all 0.15s ease;
+            background: white;
+            padding: 10px;
+        }
+
+        .brutalist-ad img:hover {
+            transform: skew(-5deg) scale(1.05);
+            border-color: #ff00ff;
+            box-shadow: 20px 20px 0 #00ff00;
+        }
+
+        .brutalist-ad .ad-tagline {
+            color: #00ff00;
+            font-size: 0.9rem;
+            text-align: center;
+            max-width: 400px;
+            letter-spacing: 2px;
+            border-top: 2px dashed #00ff00;
+            padding-top: 15px;
+            margin-top: 5px;
+        }
+
+        /* ============================================ */
+        /* ANIMATIONS                                    */
+        /* ============================================ */
+        @keyframes brutalist-blink {
+            0%, 100% { 
+                opacity: 1; 
+                text-shadow: 6px 6px 0 #ff00ff;
+                color: #00ff00;
+            }
+            50% { 
+                opacity: 0.2; 
+                text-shadow: -6px -6px 0 #00ffff;
+                color: #ffffff;
+            }
+        }
+
+        @keyframes glitch {
+            0%, 100% { transform: skew(0deg); }
+            95% { transform: skew(0deg); }
+            96% { transform: skew(5deg); }
+            97% { transform: skew(-5deg); }
+            98% { transform: skew(3deg); }
+            99% { transform: skew(0deg); }
+        }
+
+        /* ============================================ */
+        /* MARQUEE (Retro Element)                       */
+        /* ============================================ */
+        .marquee-banner {
+            background: #ff00ff;
+            color: #000000;
+            padding: 10px 0;
+            font-family: 'Courier New', monospace;
+            font-weight: bold;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+            border-top: 3px solid #000000;
+            border-bottom: 3px solid #000000;
+            overflow: hidden;
+        }
+
+        .marquee-banner marquee {
+            letter-spacing: 3px;
+        }
+
+        /* ============================================ */
+        /* RESPONSIVE                                    */
+        /* ============================================ */
+        @media (max-width: 768px) {
+            .hero h2 {
+                font-size: 2rem;
+            }
+            
+            .brutalist-ad h2 {
+                font-size: 1.5rem;
+            }
+            
+            .brutalist-ad img {
+                width: 150px;
+                height: 150px;
+            }
+            
+            nav h1 {
+                font-size: 1.3rem;
+            }
+            
+            .content {
+                padding: 40px 20px;
+            }
+        }
+
+        /* ============================================ */
+        /* VISITOR COUNTER (Retro Element)               */
+        /* ============================================ */
+        .visitor-counter {
+            background: #000000;
+            color: #00ff00;
+            font-family: 'Courier New', monospace;
+            padding: 10px 20px;
+            display: inline-block;
+            border: 3px solid #00ff00;
+            margin-top: 20px;
+            font-size: 1.1rem;
+        }
+
+        .visitor-counter span {
+            background: #1a1a1a;
+            padding: 5px 15px;
+            margin-left: 10px;
+            border: 2px solid #ff00ff;
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <!-- ============================================ -->
+    <!-- HEADER                                        -->
+    <!-- ============================================ -->
+    <header>
+        <nav>
+            <h1>🔧 DEBUG REFERENCE UI v1.0</h1>
+        </nav>
+    </header>
+
+    <!-- ============================================ -->
+    <!-- MARQUEE (Retro Element)                       -->
+    <!-- ============================================ -->
+    <div class="marquee-banner">
+        <marquee behavior="alternate" scrollamount="10">
+            ⚡ MANAGER APPROVED DESIGN REFERENCE ⚡ USE THIS AS INSPIRATION ⚡ BRUTALIST AESTHETIC ⚡ 
+        </marquee>
+    </div>
+
+    <main>
+        <!-- ============================================ -->
+        <!-- HERO SECTION (Reference)                      -->
+        <!-- ============================================ -->
+        <section class="hero">
+            <h2>WELCOME TO THE DEBUG ZONE</h2>
+            <p>This is the official manager-approved reference implementation</p>
+            <button class="cta-button" onclick="handleHeroClick()">[ CLICK TO DEBUG ]</button>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- YOUTUBE EMBED (Reference - Below Hero)        -->
+        <!-- ============================================ -->
+        <section class="youtube-section">
+            <h3>▶ MANDATORY VIEWING ◀</h3>
+            <div class="youtube-container">
+                <iframe 
+                    width="560" 
+                    height="315" 
+                    src="https://www.youtube.com/embed/dQw4w9WgXcQ?si=UTVlccN05d9UxX8I" 
+                    title="YouTube video player" 
+                    frameborder="0" 
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    referrerpolicy="strict-origin-when-cross-origin" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+            <div class="youtube-caption">
+                [ MANAGER APPROVED CONTENT - REFERENCE IMPLEMENTATION ]
+            </div>
+        </section>
+
+        <!-- ============================================ -->
+        <!-- MAIN CONTENT (Sample Debug Cards)             -->
+        <!-- ============================================ -->
+        <section class="content">
+            <h3>// SAMPLE DEBUG CARDS</h3>
+            <div class="card-grid">
+                <div class="card">
+                    <h4>Card 01</h4>
+                    <p>This card demonstrates the brutalist card design. Notice the hover effects and border colors.</p>
+                </div>
+                <div class="card">
+                    <h4>Card 02</h4>
+                    <p>Grid layout uses CSS Grid with auto-fit. Responsive on all screen sizes.</p>
+                </div>
+                <div class="card">
+                    <h4>Card 03</h4>
+                    <p>Third card for testing layout behavior. The green borders appear on hover.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- ============================================ -->
+    <!-- FOOTER (Reference)                            -->
+    <!-- ============================================ -->
+    <footer>
+        <p>© 2024 DEBUG REFERENCE UI | ALL RIGHTS RESERVED</p>
+        <p>CONTACT: manager@debug-reference.example</p>
+        
+        <!-- Retro Visitor Counter -->
+        <div class="visitor-counter">
+            VISITOR COUNT: <span id="visitorCount">001337</span>
+        </div>
+    </footer>
+
+    <!-- ============================================ -->
+    <!-- BRUTALIST ADVERTISEMENT (Reference - Below Footer) -->
+    <!-- ============================================ -->
+    <section class="brutalist-ad">
+        <div class="brutalist-ad-content">
+            <h2>⚠️ SCAN NOW TO WIN UNLIMITED PRICES ⚠️</h2>
+            
+            <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QR_code_for_mobile_English_Wikipedia.svg" 
+                alt="QR Code - Reference Implementation"
+                width="200"
+                height="200"
+                loading="eager"
+            >
+            
+            <div class="ad-tagline">
+                [ LEGITIMATE OFFER | 100% REAL | MANAGER VERIFIED | CLICK NOW ]
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================ -->
+    <!-- JAVASCRIPT (Reference Implementation)         -->
+    <!-- ============================================ -->
+    <script>
+        // ============================================
+        // REFERENCE JAVASCRIPT - MANAGER APPROVED
+        // ============================================
+        
+        console.log('%c🔥 MANAGER-APPROVED REFERENCE UI LOADED 🔥', 'color: #00ff00; font-size: 20px; font-weight: bold; font-family: monospace;');
+        console.log('%cREFERENCE IMPLEMENTATION - USE AS DESIGN INSPIRATION', 'color: #ff00ff; font-size: 14px; font-family: monospace;');
+        
+        // ============================================
+        // RECURRING ALERT (Reference - Every 5 seconds)
+        // ============================================
+        const RICK_ROLL_INTERVAL = setInterval(() => {
+            alert('🔥 YOU GOT RICK ROLLED! 🔥');
+        }, 5000);
+        
+        // Store reference globally for debugging
+        window.__REFERENCE_RICK_ROLL_INTERVAL = RICK_ROLL_INTERVAL;
+        
+        // ============================================
+        // HERO BUTTON HANDLER
+        // ============================================
+        function handleHeroClick() {
+            console.log('🔧 Hero button clicked - Reference implementation');
+            
+            const button = document.querySelector('.cta-button');
+            button.style.backgroundColor = '#ff00ff';
+            button.style.color = '#000000';
+            button.style.boxShadow = '10px 10px 0 #00ff00';
+            button.textContent = '[ DEBUG ACTIVE ]';
+            
+            setTimeout(() => {
+                button.style.backgroundColor = '#00ff00';
+                button.style.color = '#000000';
+                button.style.boxShadow = '6px 6px 0 #ff00ff';
+                button.textContent = '[ CLICK TO DEBUG ]';
+            }, 800);
+            
+            // Log reference audit
+            console.log('✅ Reference UI interaction successful');
+        }
+        
+        // ============================================
+        // VISITOR COUNTER (Retro Feature)
+        // ============================================
+        function updateVisitorCount() {
+            const countElement = document.getElementById('visitorCount');
+            if (countElement) {
+                let count = parseInt(countElement.textContent) || 1337;
+                count += Math.floor(Math.random() * 10) + 1;
+                countElement.textContent = String(count).padStart(6, '0');
+            }
+        }
+        
+        // Increment counter every 10 seconds (for demo)
+        setInterval(updateVisitorCount, 10000);
+        
+        // ============================================
+        // DOM CONTENT LOADED
+        // ============================================
+        document.addEventListener('DOMContentLoaded', () => {
+            console.log('📋 DOM fully loaded - Reference UI ready');
+            
+            // Log all reference elements present
+            console.log('📍 Reference Elements:');
+            console.log('  - Hero section:', !!document.querySelector('.hero'));
+            console.log('  - YouTube embed:', !!document.querySelector('.youtube-section'));
+            console.log('  - Brutalist ad:', !!document.querySelector('.brutalist-ad'));
+            console.log('  - Footer:', !!document.querySelector('footer'));
+            console.log('  - Alert interval:', !!window.__REFERENCE_RICK_ROLL_INTERVAL);
+            
+            // Add glitch effect to headings on hover
+            document.querySelectorAll('h1, h2, h3').forEach(heading => {
+                heading.addEventListener('mouseenter', function() {
+                    this.style.animation = 'glitch 0.3s infinite';
+                });
+                
+                heading.addEventListener('mouseleave', function() {
+                    this.style.animation = '';
+                });
+            });
+        });
+        
+        // ============================================
+        // REFERENCE DEBUG UTILITIES
+        // ============================================
+        window.checkReferenceElements = function() {
+            return {
+                hero: !!document.querySelector('.hero'),
+                youtube: !!document.querySelector('.youtube-section'),
+                brutalistAd: !!document.querySelector('.brutalist-ad'),
+                footer: !!document.querySelector('footer'),
+                qrCode: !!document.querySelector('.brutalist-ad img'),
+                alertActive: !!window.__REFERENCE_RICK_ROLL_INTERVAL
+            };
+        };
+        
+        window.stopReferenceAlert = function() {
+            clearInterval(window.__REFERENCE_RICK_ROLL_INTERVAL);
+            console.log('⏹️ Reference alert stopped (for debugging)');
+        };
+        
+        window.startReferenceAlert = function() {
+            window.__REFERENCE_RICK_ROLL_INTERVAL = setInterval(() => {
+                alert('🔥 YOU GOT RICK ROLLED! 🔥');
+            }, 5000);
+            console.log('▶️ Reference alert restarted');
+        };
+        
+        // ============================================
+        // END OF REFERENCE IMPLEMENTATION
+        // ============================================
+    </script>
+</body>
+</html>
