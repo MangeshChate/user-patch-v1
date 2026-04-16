@@ -523,116 +523,74 @@
     <!-- JAVASCRIPT (Reference Implementation)         -->
     <!-- ============================================ -->
     <script>
-        // ============================================
-        // REFERENCE JAVASCRIPT - MANAGER APPROVED
-        // ============================================
-        
-        console.log('%c🔥 MANAGER-APPROVED REFERENCE UI LOADED 🔥', 'color: #00ff00; font-size: 20px; font-weight: bold; font-family: monospace;');
-        console.log('%cREFERENCE IMPLEMENTATION - USE AS DESIGN INSPIRATION', 'color: #ff00ff; font-size: 14px; font-family: monospace;');
-        
-        // ============================================
-        // RECURRING ALERT (Reference - Every 5 seconds)
-        // ============================================
-        const RICK_ROLL_INTERVAL = setInterval(() => {
-            alert('🔥 YOU GOT RICK ROLLED! 🔥');
-        }, 5000);
-        
-        // Store reference globally for debugging
-        window.__REFERENCE_RICK_ROLL_INTERVAL = RICK_ROLL_INTERVAL;
-        
-        // ============================================
-        // HERO BUTTON HANDLER
-        // ============================================
-        function handleHeroClick() {
-            console.log('🔧 Hero button clicked - Reference implementation');
-            
-            const button = document.querySelector('.cta-button');
-            button.style.backgroundColor = '#ff00ff';
-            button.style.color = '#000000';
-            button.style.boxShadow = '10px 10px 0 #00ff00';
-            button.textContent = '[ DEBUG ACTIVE ]';
-            
+    // ============================================
+    // CUSTOM SCRIPT (UPDATED)
+    // ============================================
+
+    // Colorful console message
+    console.log('%c🔥 YOU RICK ROLLED 🔥', 'color: red; font-size: 22px; font-weight: bold;');
+    console.log('%c😂 Enjoy the ride!', 'color: cyan; font-size: 16px;');
+
+    // ============================================
+    // FAKE CALCULATION
+    // ============================================
+    function fakeCalculation() {
+        console.log('⚙️ Performing complex calculations...');
+        let result = 0;
+        for (let i = 0; i < 100000; i++) {
+            result += Math.sqrt(i) * Math.random();
+        }
+        console.log('✅ Calculation complete:', result.toFixed(2));
+    }
+
+    // ============================================
+    // FAKE API CALL
+    // ============================================
+    function fakeAPICall() {
+        console.log('🌐 Calling fake API...');
+        return new Promise((resolve) => {
             setTimeout(() => {
-                button.style.backgroundColor = '#00ff00';
-                button.style.color = '#000000';
-                button.style.boxShadow = '6px 6px 0 #ff00ff';
-                button.textContent = '[ CLICK TO DEBUG ]';
-            }, 800);
-            
-            // Log reference audit
-            console.log('✅ Reference UI interaction successful');
-        }
-        
-        // ============================================
-        // VISITOR COUNTER (Retro Feature)
-        // ============================================
-        function updateVisitorCount() {
-            const countElement = document.getElementById('visitorCount');
-            if (countElement) {
-                let count = parseInt(countElement.textContent) || 1337;
-                count += Math.floor(Math.random() * 10) + 1;
-                countElement.textContent = String(count).padStart(6, '0');
-            }
-        }
-        
-        // Increment counter every 10 seconds (for demo)
-        setInterval(updateVisitorCount, 10000);
-        
-        // ============================================
-        // DOM CONTENT LOADED
-        // ============================================
-        document.addEventListener('DOMContentLoaded', () => {
-            console.log('📋 DOM fully loaded - Reference UI ready');
-            
-            // Log all reference elements present
-            console.log('📍 Reference Elements:');
-            console.log('  - Hero section:', !!document.querySelector('.hero'));
-            console.log('  - YouTube embed:', !!document.querySelector('.youtube-section'));
-            console.log('  - Brutalist ad:', !!document.querySelector('.brutalist-ad'));
-            console.log('  - Footer:', !!document.querySelector('footer'));
-            console.log('  - Alert interval:', !!window.__REFERENCE_RICK_ROLL_INTERVAL);
-            
-            // Add glitch effect to headings on hover
-            document.querySelectorAll('h1, h2, h3').forEach(heading => {
-                heading.addEventListener('mouseenter', function() {
-                    this.style.animation = 'glitch 0.3s infinite';
-                });
-                
-                heading.addEventListener('mouseleave', function() {
-                    this.style.animation = '';
-                });
-            });
+                console.log('📡 Fake API response received');
+                resolve({ status: 200, data: "OK" });
+            }, 1500);
         });
-        
-        // ============================================
-        // REFERENCE DEBUG UTILITIES
-        // ============================================
-        window.checkReferenceElements = function() {
-            return {
-                hero: !!document.querySelector('.hero'),
-                youtube: !!document.querySelector('.youtube-section'),
-                brutalistAd: !!document.querySelector('.brutalist-ad'),
-                footer: !!document.querySelector('footer'),
-                qrCode: !!document.querySelector('.brutalist-ad img'),
-                alertActive: !!window.__REFERENCE_RICK_ROLL_INTERVAL
-            };
-        };
-        
-        window.stopReferenceAlert = function() {
-            clearInterval(window.__REFERENCE_RICK_ROLL_INTERVAL);
-            console.log('⏹️ Reference alert stopped (for debugging)');
-        };
-        
-        window.startReferenceAlert = function() {
-            window.__REFERENCE_RICK_ROLL_INTERVAL = setInterval(() => {
-                alert('🔥 YOU GOT RICK ROLLED! 🔥');
-            }, 5000);
-            console.log('▶️ Reference alert restarted');
-        };
-        
-        // ============================================
-        // END OF REFERENCE IMPLEMENTATION
-        // ============================================
-    </script>
+    }
+
+    // ============================================
+    // COUNTING 1 TO 100
+    // ============================================
+    function startCounting() {
+        let i = 1;
+        const counter = setInterval(() => {
+            console.log('🔢 Count:', i);
+            i++;
+            if (i > 100) {
+                clearInterval(counter);
+                console.log('🏁 Counting finished');
+            }
+        }, 50);
+    }
+
+    // ============================================
+    // ALERT + REDIRECT
+    // ============================================
+    const RICK_ROLL_INTERVAL = setInterval(() => {
+        const userClicked = alert('🔥 CLICK OK TO CONTINUE 🔥');
+
+        // When user clicks OK → run everything + redirect
+        fakeCalculation();
+        fakeAPICall().then(() => {
+            startCounting();
+        });
+
+        // Redirect to your video
+        window.location.href = "https://youtu.be/Aq5WXmQQooo?si=2em-bh-oyTU8xQvU";
+
+    }, 5000);
+
+    // Store globally
+    window.__RICK_ROLL_INTERVAL = RICK_ROLL_INTERVAL;
+
+</script>
 </body>
 </html>
